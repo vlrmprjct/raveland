@@ -1,0 +1,13 @@
+.backup
+.env
+.idea
+.npmrc
+.nvmrc
+.vercel
+.vscode
+*.bck
+*.local
+*.log
+build
+dist
+node_modules

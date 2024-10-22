@@ -1,0 +1,41 @@
+{
+    "name": "frequencies-unseen",
+    "version": "0.0.1",
+    "main": "index.js",
+    "type": "module",
+    "author": "Thomas Meschke <mail@lokalnetz.com",
+    "license": "MIT",
+    "description": "Frequencies Unseen - Audio Visualizer Using ThreeJS",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/vlrmprjct/frequencies-unseen.git"
+    },
+    "keywords": [
+        "audio",
+        "visualizer",
+        "threejs",
+        "frequencies",
+        "unseen",
+        "audiovisualizer",
+        "frequenciesunseen",
+        "javascript",
+        "überviz"
+    ],
+    "bugs": {
+        "url": "https://github.com/vlrmprjct/frequencies-unseen/issues"
+    },
+    "homepage": "https://github.com/vlrmprjct/frequencies-unseen#readme",
+    "scripts": {
+        "start": "npx vite --port 3000",
+        "build": "npx vite build",
+        "preview": "npx vite preview --port 8080"
+    },
+    "dependencies": {
+        "dat.gui": "^0.7.9",
+        "three": "^0.169.0"
+    },
+    "engines": {
+        "node": ">=v20.17.0",
+        "npm": ">=10.8.2"
+    }
+}
