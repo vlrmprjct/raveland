@@ -27,7 +27,7 @@
     "homepage": "https://github.com/vlrmprjct/frequencies-unseen#readme",
     "scripts": {
         "start": "npx vite --port 3000",
-        "build": "npx vite build",
+        "build": "npx vite build --base ./",
         "preview": "npx vite preview --port 8080"
     },
     "dependencies": {
