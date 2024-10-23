@@ -13,6 +13,9 @@ import {
 const ctrl = document.getElementById('ctrl');
 const intro = document.getElementById('intro');
 
+let lastTime = 0;
+const FPS = 30;
+const updateInterval = 1000 / FPS;
 let started = false;
 
 export const main = (() => {
@@ -36,14 +39,19 @@ export const main = (() => {
 		started = true;
 	}
 
-	const update = () => {
-		requestAnimationFrame(update);
-        audio.update();
-        fx.update();
-        visualizer.update();
-        Bars.update();
-        WhiteRing.update();
-	}
+    const update = (time) => {
+        requestAnimationFrame(update);
+        const delta = time - lastTime;
+
+        if (delta >= updateInterval) {
+            lastTime = time;
+            audio.update();
+            fx.update();
+            visualizer.update();
+            Bars.update();
+            WhiteRing.update();
+        }
+    }
 
 	const onKeyDown = (event) => {
 		switch (event.keyCode) {

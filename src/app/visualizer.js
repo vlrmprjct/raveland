@@ -24,7 +24,7 @@ export const visualizer = (() => {
 
 		// RENDERER
 		renderer = new WebGLRenderer({
-			antialias: false
+			antialias: false,
 		});
 		renderer.setSize(FIXED_SIZE_W, FIXED_SIZE_H);
 		renderer.setClearColor (0x000000);
