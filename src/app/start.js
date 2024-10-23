@@ -11,7 +11,6 @@ export const start = (container = null) => {
     let glitchDelay = 200;
     let bypassTime = 0;
     let isBypassing = false;
-    let renderer;
 
     const loader = new FontLoader();
     loader.load('font/helvetiker_regular.typeface.json', (font) => {
@@ -53,19 +52,17 @@ export const start = (container = null) => {
         composer.addPass(badTVPass);
         composer.addPass(glitchPass);
 
-        renderer = composer.renderer;
-
         const onWindowResize = () => {
             const width = window.innerWidth;
             const height = (width / 16) * 9;
 
             camera.aspect = width / height;
             camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
+            composer.renderer.setSize(width, height);
         };
 
         onWindowResize();
-        container.appendChild(renderer.domElement);
+        container.appendChild(composer.renderer.domElement);
         window.addEventListener('resize', onWindowResize);
 
         const render = (time) => {
