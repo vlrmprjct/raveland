@@ -5,15 +5,16 @@ import { RenderPass, EffectComposer, ShaderPass } from './../lib/postprocess';
 import { BadTVShader, DigitalGlitch, FilmShader, RGBShiftShader } from './../lib/shaders';
 
 export const start = (container = null) => {
-
     if (!container) return false;
 
     let glitchTime = 0;
+    let glitchDelay = 200;
+    let bypassTime = 0;
+    let isBypassing = false;
     let renderer;
 
     const loader = new FontLoader();
     loader.load('font/helvetiker_regular.typeface.json', (font) => {
-
         const geometry = new TextGeometry('Press [P] to PLAY', {
             font,
             size: 60,
@@ -42,18 +43,6 @@ export const start = (container = null) => {
 
         const glitchPass = new ShaderPass(DigitalGlitch);
         glitchPass.uniforms['amount'].value = 0.0005;
-        setInterval(() => {
-            glitchTime += 1;
-            glitchPass.uniforms['byp'].value = Math.random() < 0.5 ? 1 : 0;
-            glitchPass.uniforms['distortion_y'].value = 0.006;
-            glitchPass.uniforms['col_s'].value = 0.015;
-            if (Math.random() < 0.2) {
-                glitchPass.uniforms['byp'].value = 1;
-                setTimeout(() => {
-                    glitchPass.uniforms['byp'].value = 0;
-                }, 100);
-            }
-        }, 200);
 
         const rgbPass = new ShaderPass(RGBShiftShader);
         const composer = new EffectComposer(new WebGLRenderer());
@@ -76,15 +65,32 @@ export const start = (container = null) => {
         };
 
         onWindowResize();
-
         container.appendChild(renderer.domElement);
-
         window.addEventListener('resize', onWindowResize);
 
-        const render = () => {
+        const render = (time) => {
             requestAnimationFrame(render);
+
+            if (time - glitchTime > glitchDelay) {
+                glitchTime = time;
+                glitchPass.uniforms['byp'].value = Math.random() < 0.5 ? 1 : 0;
+                glitchPass.uniforms['distortion_y'].value = 0.006;
+                glitchPass.uniforms['col_s'].value = 0.015;
+
+                if (Math.random() < 0.2) {
+                    isBypassing = true;
+                    bypassTime = time;
+                    glitchPass.uniforms['byp'].value = 1;
+                }
+            }
+
+            if (isBypassing && time - bypassTime > 100) {
+                glitchPass.uniforms['byp'].value = 0;
+                isBypassing = false;
+            }
+
             composer.render();
-        }
+        };
         render();
     });
 };
