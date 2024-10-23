@@ -1,6 +1,6 @@
 {
     "name": "frequencies-unseen",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "main": "index.js",
     "type": "module",
     "author": "Thomas Meschke <mail@lokalnetz.com",
