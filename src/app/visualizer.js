@@ -37,7 +37,6 @@ export const visualizer = (() => {
 
 		scene = new Scene();
 		scene.add(camera);
-		scene.fog = new Fog(0x000000, 2000, 3000);
 
 		// INIT VIZ
 		vizHolder =  new Object3D();
