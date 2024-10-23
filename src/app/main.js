@@ -10,74 +10,74 @@ import {
     WhiteRing
 } from './../lib/objects';
 
-const ctrl = document.getElementById('ctrl');
-const intro = document.getElementById('intro');
+let lastUpdateTime = 0;
+let started = false;
 
-let lastTime = 0;
 const FPS = 30;
 const updateInterval = 1000 / FPS;
-let started = false;
+const ctrl = document.getElementById('ctrl');
+const intro = document.getElementById('intro');
 
 export const main = (() => {
 
     const init = () => {
-		window.addEventListener('keydown', onKeyDown, false);
+        window.addEventListener('keydown', onKeyDown, false);
         window.addEventListener('resize', onResize, false);
         intro.addEventListener('click', onIntroClick, false);
 
         start(intro);
-	}
+    };
 
     const startMusic = () => {
         audio.init();
-	    controls.init();
-		visualizer.init();
-		fx.init();
-		onResize();
-		update();
-		intro.remove();
-		started = true;
-	}
+        controls.init();
+        visualizer.init();
+        fx.init();
+        onResize();
+        update();
+        intro.remove();
+        started = true;
+    };
 
-    const update = (time) => {
+    const update = (currentTime) => {
         requestAnimationFrame(update);
-        const delta = time - lastTime;
+        const timeDiff = currentTime - lastUpdateTime;
 
-        if (delta >= updateInterval) {
-            lastTime = time;
+        if (timeDiff >= updateInterval) {
+            lastUpdateTime = currentTime;
             audio.update();
             fx.update();
             visualizer.update();
             Bars.update();
             WhiteRing.update();
         }
-    }
+    };
 
-	const onKeyDown = ({ keyCode }) => {
-		const keys = {
-			32: () => audio.onTap(),
-			81: () => started && toggleControls(),
-			80: () => !started && startMusic(),
-		};
-		const handler = keys[keyCode];
-		handler && handler();
-	};
+    const onKeyDown = ({ keyCode }) => {
+        const keys = {
+            32: () => audio.onTap(),
+            81: () => started && toggleControls(),
+            80: () => !started && startMusic(),
+        };
+        const handler = keys[keyCode];
+        handler && handler();
+    };
 
     const onIntroClick = () => {
         if (!started) startMusic();
+    };
+
+    const onResize = () => {
+        visualizer.onResize();
     }
 
-	const onResize = () => {
-		visualizer.onResize();
-	}
-
-	const toggleControls = () => {
-		controls.vizParams.showControls = !controls.vizParams.showControls;
-		ctrl.style.display = (controls.vizParams.showControls) ? 'block' : 'none';
-	}
+    const toggleControls = () => {
+        controls.vizParams.showControls = !controls.vizParams.showControls;
+        ctrl.style.display = (controls.vizParams.showControls) ? 'block' : 'none';
+    };
 
     return {
-		init: init,
-	};
+        init,
+    };
 
 })();
