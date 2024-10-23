@@ -53,19 +53,15 @@ export const main = (() => {
         }
     }
 
-	const onKeyDown = (event) => {
-		switch (event.keyCode) {
-			case 32 /* space */:
-				audio.onTap();
-				break;
-			case 81 /* q */:
-				if (started) toggleControls();
-				break;
-			case 80 /* p */:
-				if (!started) startMusic();
-				break;
-		}
-	}
+	const onKeyDown = ({ keyCode }) => {
+		const keys = {
+			32: () => audio.onTap(),
+			81: () => started && toggleControls(),
+			80: () => !started && startMusic(),
+		};
+		const handler = keys[keyCode];
+		handler && handler();
+	};
 
     const onIntroClick = () => {
         if (!started) startMusic();
