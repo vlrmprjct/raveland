@@ -55,7 +55,7 @@ export const main = (() => {
 
     const onKeyDown = ({ keyCode }) => {
         const keys = {
-            32: () => audio.onTap(),
+            32: () => started && audio.onTap(),
             81: () => started && toggleControls(),
             80: () => !started && startMusic(),
         };
@@ -69,7 +69,7 @@ export const main = (() => {
 
     const onResize = () => {
         visualizer.onResize();
-    }
+    };
 
     const toggleControls = () => {
         controls.vizParams.showControls = !controls.vizParams.showControls;
