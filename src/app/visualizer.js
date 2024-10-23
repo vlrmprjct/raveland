@@ -53,7 +53,7 @@ export const visualizer = (() => {
 	const onResize = () => {
 		let renderW, renderH;
 
-		if (controls.vizParams.fullSize){
+		if (controls.vizParams.fullSize) {
 			renderW = window.innerWidth;
 			renderH = window.innerHeight;
 		} else {
@@ -61,9 +61,11 @@ export const visualizer = (() => {
 			renderH = FIXED_SIZE_H;
 		}
 
-		camera.aspect = renderW / renderH;
-		camera.updateProjectionMatrix();
-		renderer.setSize(renderW, renderH);
+        if(camera) {
+            camera.aspect = renderW / renderH;
+            camera.updateProjectionMatrix();
+            renderer.setSize(renderW, renderH);
+        }
 	};
 
     return {
