@@ -2,10 +2,15 @@
     "name": "Frequencies Unseen",
     "short_name": "Frequencies Unseen",
     "description": "Frequencies Unseen - ThreeJS Audio Visualizer Web App",
+    "id": "/frequencies-unseen/",
     "start_url": "/frequencies-unseen/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
+    "form_factor": "wide",
+    "display_override": [
+        "window-controls-overlay"
+    ],
     "icons": [
         {
             "src": "icons/icon-192x192.png",
@@ -18,5 +23,5 @@
             "type": "image/png"
         }
     ],
-    "lang": "en"
+    "lang": "en-US"
 }
