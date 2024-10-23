@@ -74,9 +74,9 @@ jobs:
       - name: Upload to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          ftp-server: ${{ secrets.FTP_SERVER }}
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist
           server-dir: /subdomain/dev/frequencies-unseen
 
