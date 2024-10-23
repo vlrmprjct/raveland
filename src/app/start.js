@@ -65,8 +65,21 @@ export const start = (container = null) => {
         composer.addPass(glitchPass);
 
         renderer = composer.renderer;
-        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        const onWindowResize = () => {
+            const width = window.innerWidth;
+            const height = (width / 16) * 9;
+
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        };
+
+        onWindowResize();
+
         container.appendChild(renderer.domElement);
+
+        window.addEventListener('resize', onWindowResize);
 
         const render = () => {
             requestAnimationFrame(render);
