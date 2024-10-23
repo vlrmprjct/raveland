@@ -50,15 +50,12 @@ export const visualizer = (() => {
 	};
 
 	const onResize = () => {
-		let renderW, renderH;
 
-		if (controls.vizParams.fullSize) {
-			renderW = window.innerWidth;
-			renderH = window.innerHeight;
-		} else {
-			renderW = FIXED_SIZE_W;
-			renderH = FIXED_SIZE_H;
-		}
+        const { fullSize } = controls.vizParams;
+        const { innerWidth, innerHeight } = window;
+
+		const renderW = fullSize ? innerWidth : FIXED_SIZE_W;
+		const renderH = fullSize ? innerHeight : FIXED_SIZE_H;
 
         if(camera) {
             camera.aspect = renderW / renderH;
