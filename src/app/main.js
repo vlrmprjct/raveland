@@ -51,7 +51,6 @@ export const main = (() => {
 				break;
 			case 81 /* q */:
 				if (started) toggleControls();
-                console.log('q pressed yyyyyy regzqwerzw54wz 5');
 				break;
 			case 80 /* p */:
 				if (!started) startMusic();
