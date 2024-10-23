@@ -1,5 +1,4 @@
 import {
-    Fog,
     Object3D,
     PerspectiveCamera,
     Scene,
@@ -65,12 +64,12 @@ export const visualizer = (() => {
 	};
 
     return {
-		init,
-        update: update,
-		getVizHolder:() => vizHolder,
 		getCamera: () => camera,
-		getScene: () => scene,
 		getRenderer: () => renderer,
-		onResize: onResize
+		getScene: () => scene,
+		getVizHolder:() => vizHolder,
+		init,
+		onResize,
+        update,
 	};
 })();
