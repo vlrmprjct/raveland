@@ -71,6 +71,15 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Upload to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.5.0
+        with:
+          ftp-server: ${{ secrets.FTP_SERVER }}
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist
+          server-dir: /subdomain/dev/frequencies-unseen
+
       - name: Create release if not exists
         id: check_release
         env:
