@@ -40,18 +40,18 @@ jobs:
         with:
           node-version: '20'
 
-      # - name: Verify Release Creation
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     gh release list
+      - name: Verify Release Creation
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release list
 
-      # - name: Get latest tag
-      #   id: get_latest_tag
-      #   run: |
-      #     TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "")
-      #     echo "LATEST_TAG=$TAG" >> $GITHUB_ENV
-      #     echo "$TAG"
+      - name: Get latest tag
+        id: get_latest_tag
+        run: |
+          TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "")
+          echo "LATEST_TAG=$TAG" >> $GITHUB_ENV
+          echo "$TAG"
 
       - name: Install dependencies
         run: |
@@ -71,14 +71,14 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      # - name: Create release if not exists
-      #   id: check_release
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     if gh release view ${{ env.LATEST_TAG }}; then
-      #       echo "Release exists"
-      #     else
-      #       echo "Release does not exist"
-      #       gh release create ${{ env.LATEST_TAG }} --title "${{ env.LATEST_TAG }}" --notes "${{ env.LATEST_TAG }}"
-      #     fi
+      - name: Create release if not exists
+        id: check_release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view ${{ env.LATEST_TAG }}; then
+            echo "Release exists"
+          else
+            echo "Release does not exist"
+            gh release create ${{ env.LATEST_TAG }} --title "${{ env.LATEST_TAG }}" --notes "${{ env.LATEST_TAG }}"
+          fi
