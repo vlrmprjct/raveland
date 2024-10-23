@@ -77,8 +77,9 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist
-          server-dir: /subdomain/dev/frequencies-unseen
+          local-dir: dist/
+          server-dir: /subdomain/dev/frequencies-unseen/
+          dangerous-clean-slate: true
 
       - name: Create release if not exists
         id: check_release
