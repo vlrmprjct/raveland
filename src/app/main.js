@@ -35,7 +35,7 @@ export const main = (() => {
 		fx.init();
 		onResize();
 		update();
-		intro.style.display = 'none';
+		intro.remove();
 		started = true;
 	}
 
