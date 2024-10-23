@@ -20,6 +20,7 @@ export const main = (() => {
     const init = () => {
 		window.addEventListener('keydown', onKeyDown, false);
         window.addEventListener('resize', onResize, false);
+        intro.addEventListener('click', onIntroClick, false);
 
         start(intro);
 	}
@@ -57,6 +58,10 @@ export const main = (() => {
 				break;
 		}
 	}
+
+    const onIntroClick = () => {
+        if (!started) startMusic();
+    }
 
 	const onResize = () => {
 		visualizer.onResize();
