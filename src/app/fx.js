@@ -26,24 +26,26 @@ import {
 import { Util } from './../util/utils';
 
 export const fx = (() => {
-    let renderer, scene, camera;
 
     let blendComposer,
         badTVPass,
         blendPass,
         bloomPass,
+        camera,
         composer,
         copyPass,
         filmPass,
         glowComposer,
+        hblurPass,
         mirrorPass,
+        renderer,
         renderPass,
         renderTarget,
         renderTarget2,
-        rgbPass;
-
-    let hblurPass, vblurPass;
-    let shaderTime = 0;
+        rgbPass,
+        scene,
+        shaderTime = 0,
+        vblurPass;
 
     const BLUR = 3.0;
     const SCREEN_W = window.innerWidth;
@@ -68,7 +70,7 @@ export const fx = (() => {
         }
 
         renderTarget = new WebGLRenderTarget(SCREEN_W, SCREEN_H, renderTargetParameters);
-        composer = new EffectComposer(visualizer.getRenderer(), renderTarget);
+        composer = new EffectComposer(renderer, renderTarget);
         renderPass = new RenderPass(scene, camera);
         composer.addPass(renderPass);
 
@@ -141,7 +143,7 @@ export const fx = (() => {
         composer.render(0.1);
         glowComposer.render(0.1);
         blendComposer.render(0.1);
-    }
+    };
 
     return {
         init,
