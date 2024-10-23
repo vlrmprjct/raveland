@@ -2,7 +2,7 @@
     "name": "Frequencies Unseen",
     "short_name": "Frequencies Unseen",
     "description": "Frequencies Unseen - ThreeJS Audio Visualizer Web App",
-    "start_url": "/",
+    "start_url": "/frequencies-unseen/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#000000",
