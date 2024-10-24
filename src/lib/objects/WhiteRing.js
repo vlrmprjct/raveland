@@ -6,6 +6,7 @@ import {
     RingGeometry,
 } from 'three';
 import { audio, visualizer } from './../../app';
+import { Util } from './../../util/utils';
 
 export const WhiteRing = (() => {
 
@@ -40,7 +41,15 @@ export const WhiteRing = (() => {
         });
 
         shapesCount = shapes.length;
-    }
+        initRandomShape();
+    };
+
+    const initRandomShape = () => {
+        const random = Util.randomInt(0, shapesCount - 1);
+        shapes.forEach(({ rotation }, index) => {
+            rotation.y = (index === random) ? 0 : Math.PI / 2;
+        });
+    };
 
     const showNewShape = () => {
 
@@ -52,8 +61,8 @@ export const WhiteRing = (() => {
 
         // Show a shape sometimes
         if (Math.random() < .5) {
-            const r = Math.floor(Math.random() * shapesCount);
-            shapes[r].rotation.y = Math.random() * Math.PI / 4 - Math.PI / 8;
+            const random = Util.randomInt(0, shapesCount - 1);
+            shapes[random].rotation.y = Math.random() * Math.PI / 4 - Math.PI / 8;
         }
     }
 
