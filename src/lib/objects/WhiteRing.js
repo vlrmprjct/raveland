@@ -14,27 +14,27 @@ export const WhiteRing = (() => {
         shapesCount;
 
     const shapes = [];
-    const RADIUS = 1000;
+    const sides = [3, 4, 5, 6];
+    const radius = 1000;
     const groupHolder = new Object3D();
+    const config = {
+        color: 0xFFFFFF,
+        depthTest: false,
+        depthWrite: false,
+        opacity: 1,
+        transparent: true,
+        wireframe: false,
+        blending: AdditiveBlending,
+    };
 
     const init = () => {
 
         visualizer.getVizHolder().add(groupHolder);
-
-        const material = new MeshBasicMaterial({
-            color: 0xFFFFFF,
-            depthTest: false,
-            depthWrite: false,
-            opacity: 1,
-            transparent: true,
-            wireframe: false,
-            blending: AdditiveBlending,
-        });
+        const material = new MeshBasicMaterial(config);
 
         // Create rings of different numbers of sides
-        const sides = [3, 4, 5, 6];
         sides.forEach(sideCount => {
-            const ringGeometry = new RingGeometry(RADIUS * 0.6, RADIUS, sideCount, 1, 0, Math.PI * 2);
+            const ringGeometry = new RingGeometry(radius * 0.6, radius, sideCount, 1, 0, Math.PI * 2);
             const ringMesh = new Mesh(ringGeometry, material);
             groupHolder.add(ringMesh);
             shapes.push(ringMesh);
