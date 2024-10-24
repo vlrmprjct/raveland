@@ -40,7 +40,7 @@ export const audio = (() => {
     let bpmTime = 0; // bpmTime ranges from 0 to 1. 0 = on beat. Based on tap bpm
     let count = 0;
     let debugCtx;
-    let freqByteData; //bars - bar data is from 0 - 256 in 512 bins. no sound is 0;
+    let freqByteData; // bars - bar data is from 0 - 256 in 512 bins. no sound is 0;
     let gotBeat = false;
     let gradient;
     let isPlayingAudio = false;
@@ -101,7 +101,7 @@ export const audio = (() => {
         timer = setInterval(onBMPBeat, msecsAvg);
 
         onUseMic();
-    }
+    };
 
 
     const createAnalyser = () => {
@@ -109,7 +109,7 @@ export const audio = (() => {
         analyser.smoothingTimeConstant = levelSmooth;
         analyser.fftSize = 1024;
         return analyser;
-    }
+    };
 
     const stopSound = () => {
         if (!isPlayingAudio) return;
@@ -119,26 +119,12 @@ export const audio = (() => {
             source.disconnect();
         }
         debugCtx.clearRect(0, 0, DEBUG_W, DEBUG_H);
-    }
+    };
 
-    /**
-     * onUseMic - called when the user clicks the "Use Mic" checkbox
-     *
-     * If the checkbox is checked, it will attempt to get audio from the user's
-     * microphone. If the checkbox is unchecked, it will stop any currently
-     * playing audio.
-     */
     const onUseMic = () => {
         useMic ? getMicInput() : stopSound();
-    }
+    };
 
-    /**
-     * Gets audio input from the user's microphone
-     *
-     * This function is called whenever the user clicks the "Use Mic"
-     * checkbox. It will attempt to get audio from the user's microphone
-     * and start playing it.
-     */
     const getMicInput = () => {
         stopSound();
 
@@ -163,11 +149,8 @@ export const audio = (() => {
             .catch(err => {
                 console.error('Could not get user media:', err);
             });
-    }
+    };
 
-    /**
-     * Handles the beat event, triggering effects and visual updates.
-     */
     const onBeat = () => {
         // Set the beat flag to true
         gotBeat = true;
@@ -179,16 +162,8 @@ export const audio = (() => {
         fx.onBeat();
         Bars.onBeat();
         WhiteRing.onBeat();
-    }
+    };
 
-    /**
-     * Handles the beat event from the timer when BPM mode is enabled.
-     *
-     * When BPM mode is enabled, a timer is started and this function is called
-     * every time the timer fires. It checks if a beat has been triggered since
-     * the last time the timer fired, and if so, it calls the onBeat function
-     * to trigger visual and effect updates.
-     */
     const onBMPBeat = () => {
         bpmStart = Date.now();
 
@@ -198,7 +173,7 @@ export const audio = (() => {
             gotBeat = false;
             onBeat();
         }
-    }
+    };
 
     const update = () => {
         if (!isPlayingAudio) return;
@@ -235,7 +210,7 @@ export const audio = (() => {
         bpmTime = (Date.now() - bpmStart) / msecsAvg;
 
         debugDraw();
-    }
+    };
 
     const debugDraw = () => {
 
@@ -281,10 +256,9 @@ export const audio = (() => {
         debugCtx.fillRect(0, CHART_H, bpmMaxSize, bpmMaxSize);
         debugCtx.fillStyle = '#0F0';
         debugCtx.fillRect((bpmMaxSize - size) / 2, CHART_H + (bpmMaxSize - size) / 2, size, size);
-    }
+    };
 
     const onTap = () => {
-        console.log('ontap');
 
         clearInterval(timer);
 
@@ -310,7 +284,7 @@ export const audio = (() => {
             timer = setInterval(onBMPBeat, msecsAvg);
         }
         msecsPrevious = msecs;
-    }
+    };
 
     const onChangeBPMRate = () => {
         //change rate without losing current beat time
@@ -353,19 +327,19 @@ export const audio = (() => {
         timer = setInterval(onFirstBPM, timeToNextBeat);
 
         //set timer for new beat rate
-    }
+    };
 
     const onFirstBPM = () => {
         clearInterval(timer);
         timer = setInterval(onBMPBeat, ratedBPMTime);
-    }
+    };
 
     return {
+        init,
+        onChangeBPMRate,
+        onTap,
         onUseMic,
         update,
-        init,
-        onTap,
-        onChangeBPMRate,
         getLevelsData: () => {
             return levelsData;
         },
