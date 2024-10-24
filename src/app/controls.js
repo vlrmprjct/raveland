@@ -49,8 +49,6 @@ export const controls = (() => {
 		const f4 = gui.addFolder('Viz');
 		f4.add(vizParams, 'fullSize').listen().onChange(visualizer.onResize).name('Full Size');
 		f4.open();
-
-		audio.onUseMic();
 	}
 
 	return {

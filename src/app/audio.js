@@ -104,6 +104,8 @@ export const audio = (() => {
 
         msecsAvg = 500; // Assume 120BPM
         timer = setInterval(onBMPBeat, msecsAvg);
+
+        onUseMic();
     }
 
 
