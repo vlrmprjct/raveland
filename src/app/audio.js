@@ -60,13 +60,8 @@ export const audio = (() => {
     let waveData = []; // waveform - from 0 - 1 . no sound is 0.5. Array [binCount]
 
     const init = () => {
-        try {
-            window.AudioContext = window.AudioContext;
-            audioContext = new window.AudioContext();
-        } catch (e) {
-            alert('Oops! Your browser does not support the Web Audio API.');
-            return;
-        }
+
+        audioContext = new window.AudioContext();
 
         analyser = createAnalyser();
         analyser.connect(audioContext.destination);
