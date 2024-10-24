@@ -41,41 +41,35 @@ export const WhiteRing = (() => {
         });
 
         shapesCount = shapes.length;
-        initRandomShape();
+
+        // Init a random shape
+        getRandomShape(true);
     };
 
-    const initRandomShape = () => {
-        const random = Util.randomInt(0, shapesCount - 1);
-        shapes.forEach(({ rotation }, index) => {
-            rotation.y = (index === random) ? 0 : Math.PI / 2;
-        });
-    };
-
-    const showNewShape = () => {
-
-        // Random rotation
+    const getRandomShape = (force = false) => {
+        // Random rotation for the group holder
         groupHolder.rotation.z = Math.random() * Math.PI;
 
-        // Hide shapes
+        // Hide all shapes initially
         shapes.forEach(({ rotation }) => rotation.y = Math.PI / 2);
 
-        // Show a shape sometimes
-        if (Math.random() < .5) {
+        // Show a shape based on the force flag or random chance
+        if (force || Math.random() < 0.5) {
             const random = Util.randomInt(0, shapesCount - 1);
-            shapes[random].rotation.y = Math.random() * Math.PI / 4 - Math.PI / 8;
+            shapes[random].rotation.y = force ? 0 : Math.random() * Math.PI / 4 - Math.PI / 8;
         }
-    }
+    };
 
     const update = () => {
         groupHolder.rotation.z += 0.01;
         const gotoScale = audio.getVolume() * 1.2 + 0.1;
         scale += (gotoScale - scale) / 3;
         groupHolder.scale.x = groupHolder.scale.y = groupHolder.scale.z = scale;
-    }
+    };
 
     const onBeat = () => {
-        showNewShape();
-    }
+        getRandomShape();
+    };
 
     return {
         init,
