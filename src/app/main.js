@@ -20,6 +20,8 @@ const intro = document.getElementById('intro');
 
 export const main = (() => {
 
+    const { vizParams } = controls;
+
     const init = () => {
         window.addEventListener('keydown', onKeyDown, false);
         window.addEventListener('resize', onResize, false);
@@ -72,8 +74,8 @@ export const main = (() => {
     };
 
     const toggleControls = () => {
-        controls.vizParams.showControls = !controls.vizParams.showControls;
-        ctrl.style.display = (controls.vizParams.showControls) ? 'block' : 'none';
+        vizParams.showControls = !vizParams.showControls;
+        ctrl.style.display = (vizParams.showControls) ? 'block' : 'none';
     };
 
     return {
