@@ -1,7 +1,6 @@
+# Raveland
 
-# Frequencies Unseen
-
-**Frequencies Unseen** is a complete remake and refactoring of the original "Word Problems" audio visualizer. This project visualizes audio signals in real-time using [Three.js](https://threejs.org/). The goal is to make sounds come alive through interactive and stunning visuals.
+**Raveland** is a complete remake and refactoring of the original "Word Problems" audio visualizer. This project visualizes audio signals in real-time using [Three.js](https://threejs.org/). The goal is to make sounds come alive through interactive and stunning visuals.
 
 ## Features
 
@@ -22,8 +21,8 @@ Make sure these tools are installed before you start.
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/vlrmprjct/frequencies-unseen.git
-cd frequencies-unseen
+git clone https://github.com/vlrmprjct/raveland.git
+cd raveland
 npm install
 ```
 
@@ -67,7 +66,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Issues and Suggestions
 
-If you find a bug or have a suggestion, please open an issue on [GitHub Issues](https://github.com/vlrmprjct/frequencies-unseen/issues).
+If you find a bug or have a suggestion, please open an issue on [GitHub Issues](https://github.com/vlrmprjct/raveland/issues).
 
 ## Acknowledgments
 

@@ -1,14 +1,14 @@
 {
-    "name": "frequencies-unseen",
+    "name": "raveland",
     "version": "0.0.7",
     "main": "index.js",
     "type": "module",
     "author": "Thomas Meschke <mail@lokalnetz.com",
     "license": "MIT",
-    "description": "Frequencies Unseen - Audio Visualizer Using ThreeJS",
+    "description": "Raveland - Audio Visualizer Using ThreeJS",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/vlrmprjct/frequencies-unseen.git"
+        "url": "git+https://github.com/vlrmprjct/raveland.git"
     },
     "keywords": [
         "audio",
@@ -19,12 +19,13 @@
         "audiovisualizer",
         "frequenciesunseen",
         "javascript",
-        "überviz"
+        "überviz",
+        "raveland"
     ],
     "bugs": {
-        "url": "https://github.com/vlrmprjct/frequencies-unseen/issues"
+        "url": "https://github.com/vlrmprjct/raveland/issues"
     },
-    "homepage": "https://github.com/vlrmprjct/frequencies-unseen#readme",
+    "homepage": "https://github.com/vlrmprjct/raveland#readme",
     "scripts": {
         "start": "npx vite --port 3000",
         "build": "npx vite build --base ./",
