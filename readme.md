@@ -2,6 +2,17 @@
 
 **Raveland** is a complete remake and refactoring of the original "Word Problems" audio visualizer. This project visualizes audio signals in real-time using [Three.js](https://threejs.org/). The goal is to make sounds come alive through interactive and stunning visuals.
 
+## Screenshots
+
+| Intro |
+|--|
+|![](doc/intro.png) |
+
+| App (of course a freezed screen :) |
+|--|
+| ![](doc/app.png) |
+
+
 ## Features
 
 - 🌊 **Audio Visualization**: Real-time display of frequency bands and sound waves.
