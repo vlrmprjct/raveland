@@ -14,7 +14,7 @@ export const start = (container = null) => {
 
     const loader = new FontLoader();
     loader.load('font/helvetiker_regular.typeface.json', (font) => {
-        const geometry = new TextGeometry('Press [P] to PLAY', {
+        const geometry = new TextGeometry('Turn on your music and \n      press [P] to play', {
             font,
             size: 60,
             depth: 5
